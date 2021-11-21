@@ -50,6 +50,40 @@ $(document).ready(function () {
                 + "<ul class='daily'>" + "Wind Speed: " + response.wind.speed + " MPH" + "</ul>"
                 + "</div>"
             );
+
+            var fiveDay = "https://api.openweathermap.org/data/2.5/onecall?"
+            + "lat=" + lat + "&lon=" + lon + "&units=imperial" + "&appid=9fb172be3ff75735ceac4ebea2c45bbc";
+        console.log("fiveDay", fiveDay);
+                
+        $.ajax({
+            url: fiveDay,
+            method: "GET",
+        }).then(function(response) {
+
+                $("#dailyWeather").append(
+                    "<div class='col s12 m6'>"
+                    + "<ul class='daily'>" + "UV Index: " + "<button class='w3-button' id='uvIndex' class='daily'>" + response.current.uvi + "</button>" + "</ul>"
+                    + "</div>"
+                );
+
+                if (response.current.uvi <= 2) {
+                    $("#uvIndex").addClass("green");
+                } else if (response.current.uvi <= 5) {
+                    $("#uvIndex").addClass("yellow");
+                } else if (response.current.uvi <= 7) {
+                    $("#uvIndex").addClass("orange");
+                } else if (response.current.uvi <= 10) {
+                    $("#uvIndex").addClass("red");
+                } else if (response.current.uvi <= 40) {
+                    $("#uvIndex").addClass("purple");
+                };
+
+                $("#fiveDay").append(
+                    "<div class='col-md-12'>"
+                    + "<h2 id='fiveDay'>" + "5-Day Forecast:" + "</h2>"
+                );
+                showCities(); 
+            })
         })
     }
 
