@@ -1,5 +1,9 @@
 var startDate = moment().format('M/DD/YYYY');
-
+var day1 = moment().add(1, 'days').format('M/DD/YYYY');
+var day2 = moment().add(2, 'days').format('M/DD/YYYY');
+var day3 = moment().add(3, 'days').format('M/DD/YYYY');
+var day4 = moment().add(4, 'days').format('M/DD/YYYY');
+var day5 = moment().add(5, 'days').format('M/DD/YYYY');
 
 $(document).ready(function () {
     console.log("ready!");
@@ -17,6 +21,13 @@ $(document).ready(function () {
     });
 
     function showWeather(cityInput) {
+        $("#dailyWeather").empty();
+        $("#fiveDay").empty();
+        $("#day1").empty();
+        $("#day2").empty();
+        $("#day3").empty();
+        $("#day4").empty();
+        $("#day5").empty();
 
         var oneDay = "https://api.openweathermap.org/data/2.5/weather?q="
             + cityInput + "&units=imperial" + "&appid=9fb172be3ff75735ceac4ebea2c45bbc";
